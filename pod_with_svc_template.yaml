@@ -15,13 +15,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: nginxSVC
+    name: nginx-svc
 spec:
     type: NodePort
     ports:
-    - name:  HTTP
-      port: 80
-      nodePort: 30000   
+    - port: 80   
       targetPort: 80
     selector:
       app: nginx-pod
