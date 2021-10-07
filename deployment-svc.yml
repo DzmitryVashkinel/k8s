@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  web-depl
+spec:
+  selector:
+    matchLabels:
+      app: web
+  replicas: 1
+  template:
+    metadata: 
+      labels:
+        app: web
+    spec:
+      containers:
+        - image:  vashkin/web:latest
+          name:  my-web-nginx
+          ports:
+          - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: web-svc
+spec:
+    type: NodePort
+    ports:
+    - port: 80   
+      targetPort: 80
+    selector:
+      app: web
